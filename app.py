@@ -212,13 +212,13 @@ with col_left:
             for i, (icon, name) in enumerate(icons_names):
                 step_placeholders[i].markdown(
                     f'<div class="step-box step-done">'
-                    f'✅ {name} — complete</div>',
+                    f' {name} — complete</div>',
                     unsafe_allow_html=True
                 )
                 time.sleep(0.15)  # stagger for visual effect
 
         except Exception as e:
-            st.error(f"❌ Agent error: {str(e)}")
+            st.error(f" Agent error: {str(e)}")
             result = None
 
         # ── Store result in session state ─────────────────
@@ -226,11 +226,11 @@ with col_left:
             st.session_state["result"]   = result
             st.session_state["alert_id"] = alert_id
             elapsed = round(time.time() - start_time, 1)
-            st.success(f"✅ Pipeline complete in {elapsed}s")
+            st.success(f"Pipeline complete in {elapsed}s")
 
         # ── Error display ─────────────────────────────────
         if result and result.get("error"):
-            st.error(f"⛔ {result['error']}")
+            st.error(f" {result['error']}")
 
 # ── Right column — Results ────────────────────────────────
 with col_right:
@@ -242,11 +242,11 @@ with col_right:
         st.info("Enter an Alert ID and click Run Agent to begin.")
 
     elif result.get("error") and not result.get("sar_narrative"):
-        st.error(f"⛔ {result['error']}")
+        st.error(f" {result['error']}")
 
     else:
         # ── Metrics row ───────────────────────────────────
-        st.markdown("### 📊 Alert Summary")
+        st.markdown("###  Alert Summary")
         m1, m2, m3, m4 = st.columns(4)
 
         with m1:
@@ -284,7 +284,7 @@ with col_right:
             st.markdown("""
             <div class="verdict-close">
                 <h3 style="color:#1a5c3a;margin:0">
-                ✅ VERDICT: AUTO CLOSE</h3>
+                 VERDICT: AUTO CLOSE</h3>
                 <p style="color:#8c8070;margin:4px 0 0 0;font-size:12px">
                 Insufficient indicators for SAR filing</p>
             </div>""", unsafe_allow_html=True)
@@ -387,7 +387,7 @@ with col_right:
                         df.write                           .format("delta")                           .mode("append")                           .option("mergeSchema", "true")                           .saveAsTable("gold.sar_drafts")
 
                         st.success(
-                            f"✅ SAR saved to gold.sar_drafts — "
+                            f" SAR saved to gold.sar_drafts — "
                             f"{result['sar_reference']}"
                         )
                     except Exception as e:
@@ -402,7 +402,7 @@ with col_right:
 
             with b3:
                 if st.button(
-                    "❌ Reject & Close",
+                    " Reject & Close",
                     use_container_width=True
                 ):
-                    st.info("✅ Alert closed — no suspicious activity")
+                    st.info(" Alert closed — no suspicious activity")
