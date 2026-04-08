@@ -163,7 +163,7 @@ def score_and_route(state: SARState) -> SARState:
         )
 
     # ── Log decision ──────────────────────────────────────
-    print(f"✅ [Node 6] Scoring complete")
+    print(f" [Node 6] Scoring complete")
     print(f"   TM Score:        {state.get('risk_score')}/100")
     print(f"   Agent Score:     {agent_risk_score}/100  "
           f"(adjustment: {'+' if adjustment >= 0 else ''}{adjustment})")
@@ -179,9 +179,9 @@ def score_and_route(state: SARState) -> SARState:
     if routing_decision == "SAR_DRAFT":
         print(f"   ⚡ DECISION: DRAFT SAR → proceeding to Node 7")
     elif routing_decision == "ESCALATE":
-        print(f"   📤 DECISION: ESCALATE → routing to L2 analyst")
+        print(f"    DECISION: ESCALATE → routing to L2 analyst")
     else:
-        print(f"   ✅ DECISION: AUTO CLOSE → insufficient for SAR")
+        print(f"    DECISION: AUTO CLOSE → insufficient for SAR")
     print(f"   {'='*50}")
 
     return {
@@ -193,4 +193,4 @@ def score_and_route(state: SARState) -> SARState:
         "error":            None,
     }
 
-print("✅ Node 6 — score_and_route defined")
+print("Node 6 — score_and_route defined")
