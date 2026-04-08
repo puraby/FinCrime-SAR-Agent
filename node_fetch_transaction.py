@@ -15,7 +15,7 @@ def fetch_transactions(state: SARState) -> SARState:
     """
 
     alert_id = state["alert_id"]
-    print(f"\n💳 [Node 3] Fetching transactions for: {alert_id}")
+    print(f"\n [Node 3] Fetching transactions for: {alert_id}")
 
     # ── Query all transactions for this alert ─────────────
     transactions = query(f"""
@@ -42,7 +42,7 @@ def fetch_transactions(state: SARState) -> SARState:
     """)
 
     if not transactions:
-        print(f"❌ [Node 3] No transactions found for {alert_id}")
+        print(f" [Node 3] No transactions found for {alert_id}")
         return {**state, "error": f"No transactions found for {alert_id}"}
 
     # ── Calculate summary fields ──────────────────────────
@@ -81,7 +81,7 @@ def fetch_transactions(state: SARState) -> SARState:
     swift_txns = [t for t in transactions if t["channel"] == "SWIFT_OUTWARD"]
     cash_total = sum(t["amount"] for t in cash_txns)
 
-    print(f"✅ [Node 3] Transactions loaded")
+    print(f" [Node 3] Transactions loaded")
     print(f"   Total txns:     {len(transactions)}")
     print(f"   Cash deposits:  {len(cash_txns)} deposits = AUD ${cash_total:,.2f}")
     print(f"   SWIFT wires:    {len(swift_txns)}")
@@ -117,4 +117,4 @@ def fetch_transactions(state: SARState) -> SARState:
         "error":                  None,
     }
 
-print("✅ Node 3 — fetch_transactions defined")
+print(" Node 3 — fetch_transactions defined")
