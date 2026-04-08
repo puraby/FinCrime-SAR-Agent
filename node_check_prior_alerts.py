@@ -41,7 +41,7 @@ def check_prior_alerts(state: SARState) -> SARState:
 
     # ── Handle: no prior history ──────────────────────────
     if not prior_alerts:
-        print(f"✅ [Node 4] No prior alerts found for {customer_id}")
+        print(f" [Node 4] No prior alerts found for {customer_id}")
         print(f"   First-time alert for this customer")
         return {
             **state,
@@ -77,7 +77,7 @@ def check_prior_alerts(state: SARState) -> SARState:
     repeat_pattern = len(same_typology_prior) > 0
 
     # ── Log findings ──────────────────────────────────────
-    print(f"✅ [Node 4] Prior alert history found")
+    print(f"[Node 4] Prior alert history found")
     print(f"   Prior alerts:     {prior_alert_count}")
     print(f"   Dispositions:     {', '.join(prior_dispositions)}")
     print(f"   SAR ever filed:   {prior_sar_filed}")
@@ -98,7 +98,7 @@ def check_prior_alerts(state: SARState) -> SARState:
 
     # Warn loudly if repeat pattern detected
     if repeat_pattern:
-        print(f"\n   ⚠️  REPEAT PATTERN DETECTED")
+        print(f"\n    REPEAT PATTERN DETECTED")
         print(f"      Same typology ({alert_type}) was previously")
         print(f"      flagged and closed as FALSE POSITIVE.")
         print(f"      Current alert must be reviewed with extra scrutiny.")
@@ -120,4 +120,4 @@ def check_prior_alerts(state: SARState) -> SARState:
         "error":              None,
     }
 
-print("✅ Node 4 — check_prior_alerts defined")
+print(" Node 4 — check_prior_alerts defined")
