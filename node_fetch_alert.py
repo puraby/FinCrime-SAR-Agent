@@ -16,10 +16,10 @@ def fetch_alert(state: SARState) -> SARState:
     """)
 
     if not alert:
-        print(f"❌ [Node 1] Alert {alert_id} not found")
+        print(f" [Node 1] Alert {alert_id} not found")
         return {**state, "error": f"Alert {alert_id} not found in silver.alerts"}
 
-    print(f"✅ [Node 1] Alert found")
+    print(f" [Node 1] Alert found")
     print(f"   Type:       {alert['alert_type']} — {alert['alert_subtype']}")
     print(f"   Risk Score: {alert['risk_score']} ({alert['risk_tier']})")
     print(f"   Amount:     AUD ${alert['total_amount']:,.2f}")
