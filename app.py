@@ -2,6 +2,9 @@
 import streamlit as st
 import sys
 import time
+# ── Add project to path + import agent ───────────────────
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from graph import run_agent
 
 # ── Page config ───────────────────────────────────────────
 st.set_page_config(
@@ -9,6 +12,7 @@ st.set_page_config(
     page_icon   = "🏦",
     layout      = "wide",
     initial_sidebar_state = "expanded"
+
 )
 
 # ── Custom CSS ────────────────────────────────────────────
