@@ -48,7 +48,7 @@ from graph import run_agent
 # ── Routing: after fetch_alert ────────────────────────────
 def route_after_fetch(state: SARState) -> str:
     if state.get("error"):
-        print(f"⛔ Alert not found — stopping pipeline")
+        print(f" Alert not found — stopping pipeline")
         return "end_error"
     return "enrich_customer"
 
@@ -56,7 +56,7 @@ def route_after_fetch(state: SARState) -> str:
 # ── Routing: after score_and_route ────────────────────────
 def route_after_scoring(state: SARState) -> str:
     if state.get("error"):
-        print(f"⛔ Error in pipeline: {state['error']}")
+        print(f" Error in pipeline: {state['error']}")
         return "end_error"
 
     decision = state.get("routing_decision")
@@ -65,10 +65,10 @@ def route_after_scoring(state: SARState) -> str:
         print(f"⚡ Graph routing → draft_sar")
         return "draft_sar"
     elif decision == "ESCALATE":
-        print(f"📤 Graph routing → END (escalate)")
+        print(f" Graph routing → END (escalate)")
         return "end_escalate"
     else:
-        print(f"✅ Graph routing → END (auto close)")
+        print(f"Graph routing → END (auto close)")
         return "end_close"
 
 
@@ -158,4 +158,4 @@ def run_agent(alert_id: str) -> SARState:
     return result
 
 
-print("✅ graph.py loaded — call run_agent(alert_id) to start")
+print(" graph.py loaded — call run_agent(alert_id) to start")
