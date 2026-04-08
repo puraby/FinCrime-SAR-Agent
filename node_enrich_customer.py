@@ -10,7 +10,7 @@ def enrich_customer(state: SARState) -> SARState:
     customer_id = state["customer_id"]
     account_id  = state["account_id"]
 
-    print(f"\n👤 [Node 2] Enriching customer: {customer_id}")
+    print(f"\n [Node 2] Enriching customer: {customer_id}")
 
     # ── Query customer ────────────────────────────────────
     customer = query_one(f"""
@@ -37,7 +37,7 @@ def enrich_customer(state: SARState) -> SARState:
     """)
 
     if not customer:
-        print(f"❌ [Node 2] Customer {customer_id} not found")
+        print(f" [Node 2] Customer {customer_id} not found")
         return {**state, "error": f"Customer {customer_id} not found"}
 
     # ── Query account ─────────────────────────────────────
@@ -56,11 +56,11 @@ def enrich_customer(state: SARState) -> SARState:
     """)
 
     if not account:
-        print(f"❌ [Node 2] Account {account_id} not found")
+        print(f" [Node 2] Account {account_id} not found")
         return {**state, "error": f"Account {account_id} not found"}
 
     # ── Log what we found ─────────────────────────────────
-    print(f"✅ [Node 2] Customer found")
+    print(f" [Node 2] Customer found")
     print(f"   Name:          {customer['full_name']}")
     print(f"   DOB:           {customer['dob']}")
     print(f"   Occupation:    {customer['occupation']} @ {customer['employer']}")
@@ -99,4 +99,4 @@ def enrich_customer(state: SARState) -> SARState:
         "error":              None,
     }
 
-print("✅ Node 2 — enrich_customer defined")
+print(" Node 2 — enrich_customer defined")
