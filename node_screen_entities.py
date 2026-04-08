@@ -99,7 +99,7 @@ def screen_entities(state: SARState) -> SARState:
     )
 
     # ── Log findings ──────────────────────────────────────
-    print(f"✅ [Node 5] Entity screening complete")
+    print(f" [Node 5] Entity screening complete")
     print(f"   Counterparties screened: {len(counterparties)}")
     print(f"   FATF hits:               {fatf_hits}")
     print(f"   Flagged entities:        {flagged_entities}")
@@ -110,7 +110,7 @@ def screen_entities(state: SARState) -> SARState:
         print(f"\n   ── Counterparty Details ──────────────────────")
         for c in counterparties:
             flag = "🚨" if c.get("flagged") else "✅"
-            fatf = f"⚠️  FATF {c['fatf_status']}" \
+            fatf = f"  FATF {c['fatf_status']}" \
                    if c["fatf_status"] != "STANDARD" else ""
             print(f"   {flag} {c['name']}")
             print(f"      Bank:         {c['bank_name']} ({c['bank_country']}) {fatf}")
@@ -123,7 +123,7 @@ def screen_entities(state: SARState) -> SARState:
                 print(f"      Notes:        {notes}")
 
     if fatf_hits:
-        print(f"\n   🚨 FATF JURISDICTION ALERT")
+        print(f"\n    FATF JURISDICTION ALERT")
         for country in fatf_hits:
             list_type = "BLACK LIST" \
                         if country in FATF_BLACK_LIST \
@@ -140,4 +140,4 @@ def screen_entities(state: SARState) -> SARState:
         "error":           None,
     }
 
-print("✅ Node 5 — screen_entities defined")
+print(" Node 5 — screen_entities defined")
