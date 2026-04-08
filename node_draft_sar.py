@@ -14,11 +14,11 @@ def draft_sar(state: SARState) -> SARState:
     Uses built-in session token — no external API key needed.
     """
 
-    print(f"\n📝 [Node 7] Drafting SAR for: {state['alert_id']}")
+    print(f"\n [Node 7] Drafting SAR for: {state['alert_id']}")
 
     # ── Skip if not routed to SAR ─────────────────────────
     if state.get("routing_decision") != "SAR_DRAFT":
-        print(f"⏭️  [Node 7] Skipping — routing is "
+        print(f"  [Node 7] Skipping — routing is "
               f"{state.get('routing_decision')}, not SAR_DRAFT")
         return state
 
@@ -179,7 +179,7 @@ Write the complete SMR narrative with EXACTLY these five sections:
         if response.status_code != 200:
             error_msg = (f"Gateway error {response.status_code}: "
                         f"{response.text[:200]}")
-            print(f"❌ [Node 7] {error_msg}")
+            print(f" [Node 7] {error_msg}")
             return {**state, "error": error_msg}
 
         # ── Extract narrative ─────────────────────────────
@@ -190,7 +190,7 @@ Write the complete SMR narrative with EXACTLY these five sections:
         draft_time    = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         word_count = len(sar_narrative.split())
-        print(f"✅ [Node 7] SAR narrative generated")
+        print(f" [Node 7] SAR narrative generated")
         print(f"   Reference:  {sar_reference}")
         print(f"   Model:      {model_used}")
         print(f"   Words:      {word_count}")
@@ -207,8 +207,8 @@ Write the complete SMR narrative with EXACTLY these five sections:
 
     except Exception as e:
         error_msg = f"Request failed: {str(e)}"
-        print(f"❌ [Node 7] {error_msg}")
+        print(f" [Node 7] {error_msg}")
         return {**state, "error": error_msg}
 
-print("✅ Node 7 — draft_sar defined")
+print("Node 7 — draft_sar defined")
 
